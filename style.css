@@ -1,0 +1,269 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling - minimal overhead */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 100%);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+/* Title */
+h1 {
+    color: #00FF41;
+    text-shadow: 0 0 15px #00FF41;
+    font-size: 40px;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+/* Game container */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Game info */
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFE600;
+}
+
+/* Game board */
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(31, 20px);
+    grid-template-rows: repeat(21, 20px);
+    gap: 0;
+    border: 3px solid #00D4FF;
+    background: #000;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    margin-bottom: 15px;
+}
+
+/* Cell */
+.cell {
+    width: 20px;
+    height: 20px;
+}
+
+/* Wall */
+.wall {
+    background: linear-gradient(135deg, #1A3A52 0%, #2D5A7B 100%);
+    border: 0.5px solid #00D4FF;
+    box-shadow: inset 0 0 2px rgba(0, 212, 255, 0.2);
+}
+
+/* Dot */
+.dot {
+    width: 6px;
+    height: 6px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    margin: 7px;
+    box-shadow: 0 0 4px rgba(255, 215, 0, 0.8);
+}
+
+/* Power pellet */
+.power-pellet {
+    width: 12px;
+    height: 12px;
+    background-color: #FF1493;
+    border-radius: 50%;
+    margin: 4px;
+    animation: pulse-power 0.8s infinite;
+    box-shadow: 0 0 6px #FF1493;
+}
+
+@keyframes pulse-power {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+/* Pacman */
+.pacman {
+    width: 18px;
+    height: 18px;
+    background-color: #FFE600;
+    border-radius: 50%;
+    position: relative;
+    margin: 1px;
+    box-shadow: 0 0 8px rgba(255, 230, 0, 0.8);
+}
+
+/* Pacman mouth */
+.pacman::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 9px solid transparent;
+    border-right: 9px solid black;
+    transform: rotate(45deg);
+    top: 0;
+    left: 0;
+}
+
+.pacman.right::before { transform: rotate(0); }
+.pacman.down::before { transform: rotate(90deg); }
+.pacman.left::before { transform: rotate(180deg); }
+.pacman.up::before { transform: rotate(270deg); }
+
+/* Ghost */
+.ghost {
+    width: 18px;
+    height: 18px;
+    border-radius: 10px 10px 0 0;
+    margin: 1px;
+    position: relative;
+}
+
+.ghost::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-color: inherit;
+    border-radius: 50%;
+    bottom: 9px;
+}
+
+.ghost::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 5px;
+    bottom: 0;
+    background-color: inherit;
+}
+
+/* Ghost colors */
+.blinky { background-color: #FF1744; box-shadow: 0 0 6px #FF1744; }
+.pinky { background-color: #FF4081; box-shadow: 0 0 6px #FF4081; }
+.inky { background-color: #00E5FF; box-shadow: 0 0 6px #00E5FF; }
+.clyde { background-color: #FF9100; box-shadow: 0 0 6px #FF9100; }
+
+/* Scared ghost */
+.scared {
+    background: #4169E1 !important;
+    box-shadow: 0 0 8px rgba(65, 105, 225, 0.8) !important;
+    animation: scared-blink 0.4s infinite;
+}
+
+@keyframes scared-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Controls */
+.controls {
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Button */
+button {
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #FFE600 0%, #FFD700 100%);
+    color: #000;
+    border: 2px solid #FFE600;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.2s;
+    box-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 12px rgba(255, 230, 0, 0.7);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Game over and won screens */
+.game-over, .game-won {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 35px 45px;
+    border-radius: 12px;
+    text-align: center;
+    display: none;
+    border: 3px solid;
+    box-shadow: 0 0 25px;
+    z-index: 1000;
+}
+
+.game-over {
+    border-color: #FF1744;
+    box-shadow: 0 0 25px #FF1744;
+}
+
+.game-won {
+    border-color: #00FF41;
+    box-shadow: 0 0 25px #00FF41;
+}
+
+.game-over h2 {
+    color: #FF1744;
+    text-shadow: 0 0 8px #FF1744;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.game-won h2 {
+    color: #00FF41;
+    text-shadow: 0 0 8px #00FF41;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.game-over p, .game-won p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #FFE600;
+}
+
+/* Instructions */
+.instructions {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* Volume control */
+.volume-control {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.volume-control label {
+    font-size: 12px;
+}
