@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>PAC-MAN</h1>
+
+    <div class="game-container">
+      <div class="game-info">
+        <div>Score: <span id="score">0</span></div>
+        <div>Nyawa: <span id="nyawa">3</span></div>
+      </div>
+
+      <div id="game-board"></div>
+
+      <div class="control">
+        <button id="start-btn">Start Game</button>
+        <button id="reset-btn">Reset Game</button>
+      </div>
+    </div>
+
+    <!-- GAME OVER -->
+    <div id="game-over" class="game-over hidden">
+      <h2>Game Over</h2>
+      <p>Skor akhir : <span id="final-score">0</span></p>
+      <button id="restart-btn">Main Lagi</button>
+    </div>
+
+    <!-- GAME MENANG -->
+    <div id="game-won" class="game-won hidden">
+      <h2>Kamu Menang!</h2>
+      <p>Skor akhir : <span id="win-score">0</span></p>
+      <button id="play-again-btn">Main Lagi</button>
+    </div>
+
+    <script src="logic.js"></script>
+    <script src="board.js"></script>
+    <script src="config.js"></script>
+    <script src="movement.js"></script>
+  </body>
+</html>
